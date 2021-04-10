@@ -57,6 +57,15 @@ app.post("/emptyCart",async (req, res) => {
    await Query(`DELETE FROM cart`);
 })
 
+//sales
+app.post("/sales",async (req,res) => {
+   const {productId,date} = req.body;
+   console.log(productId);
+   console.log(date);
+   await Query(`INSERT INTO sales ( product_id, Date) VALUES 
+   ('${productId}', '${date}')`)
+})
+
 //deleteCartItem
 app.post("/emptyCartItem",async (req, res) => {
    const {productId} = req.body;
@@ -67,10 +76,10 @@ app.post("/emptyCartItem",async (req, res) => {
 
 //signup
 app.post("/signup",async (req, res) => {
-const {email,address,pnumber,userName} =req.body;
+   const {email,address,pnumber,userName, date} = req.body;
 
-   await Query(`INSERT INTO user ( user_name, email, address, phone_num) VALUES 
-   ('${userName}', '${email}', '${address}', ${pnumber} )`)
+   await Query(`INSERT INTO user ( user_name, email, address, phone_num, Date) VALUES 
+   ('${userName}', '${email}', '${address}', '${pnumber}', '${date}')`)
 });
 
 
@@ -83,6 +92,6 @@ app.post("/cart", async (req,res) => {
 
 var port = process.env.PORT || 8090;
 app.listen(port);
-console.log('Order API is runnning at ' + port);
+console.log(' API is runnning at ' + port);
 
  

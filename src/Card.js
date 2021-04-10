@@ -1,11 +1,12 @@
-import React from 'react';
+import React,{useState} from 'react';
 import "./Card.css";
 import { useStateValue } from './StateProvider';
 import { store } from 'react-notifications-component';
 import Axios from "axios";
-
+import npmDate from 'date-and-time';
 const Card = ({name, id, imageUrl, price}) => {
   const [{basket},dispatch] = useStateValue();
+  const [date,setDate] = useState();
   const addToBasket = () => {
     // dispatch the item into the data layer
     dispatch({
@@ -22,7 +23,9 @@ const Card = ({name, id, imageUrl, price}) => {
   // setProductId(id);
   console.log(id);
 
-
+  var now = new Date();
+  var date1 = (npmDate.format(now, 'YYYY-MM-DD'));
+   console.log(date1);
   
   
   return (
@@ -36,7 +39,7 @@ const Card = ({name, id, imageUrl, price}) => {
         <p className="price">{price}<span>$</span></p>
         <>
       
-        <button className="btn1"
+        <button className="btn1" 
           onClick={() => {
             store.addNotification({
               title: 'Added to the cart',
@@ -55,7 +58,12 @@ const Card = ({name, id, imageUrl, price}) => {
          {
            productId: id
         });
-     
+        setDate(date1);
+        Axios.post("http://localhost:8090/sales",
+        {
+          productId: id,
+          date:date1
+       });
           }}
         >
            <span> Add to basket </span>

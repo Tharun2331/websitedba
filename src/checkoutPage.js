@@ -49,7 +49,7 @@ function Checkout() {
 
   const handleClick = () => {
     if(basket.length) {
-      history.push("/orders");
+      history.push("/");
     }
     else {
       alert("Basket is empty, why not fill it up?");

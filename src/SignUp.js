@@ -3,27 +3,33 @@ import "./SignUp.scss";
 import {useHistory} from "react-router-dom";
 import Axios from "axios";
 import {auth} from "./firebase";
-
+import npmDate from 'date-and-time';
 import CustomButton from "./Custom-Button"
 
 
 function SignUp() {
   const history = useHistory();
    const [email, setEmail] = useState("");
-   
+   const [date,setDate] = useState();
     const [userName, setUserName] = useState("");
     const [address, setAddress] = useState("");
     const [pnumber, setPNumber] = useState('');
 
-const register = async (e) => {
+    var now = new Date();
+    var date1 = (npmDate.format(now, 'YYYY-MM-DD'));
+     console.log(date1);
+
+const register =  (e) => {
+    setDate(date1);
   Axios.post("http://localhost:8090/signup",
    {email: email,
    address: address,
    userName: userName,
-   pnumber: pnumber 
+   pnumber: pnumber,
+   date: date1
   })
-  
-   
+
+
    e.preventDefault();
 
    auth
@@ -42,14 +48,10 @@ const register = async (e) => {
      setUserName('');
   };
 
-    
-
-
-
 
 return (
 
-        <div className="sign__up">
+        <div className="sign__up" >
              <h3 style={{marginLeft:"-6.5%"}} >I Don't Have An Account</h3>
              <span style={{marginLeft: "-4.5%"}}>Sign Up With Your Email And Phone Number</span>
             <form className="form">
@@ -57,7 +59,7 @@ return (
                 <input autoComplete="off" className="form-control" placeholder="Email" value={email} type="email" name="email" onChange={e => setEmail(e.target.value)}  />
                 <input autoComplete="off" className="form-control" placeholder="address" value={address} type="text" name="address" onChange={e => setAddress(e.target.value)}  />
                 <input autoComplete="off" className="form-control" placeholder="phone number" value={pnumber} type="text" name="address" onChange={e => setPNumber(e.target.value)}  />
-
+               
             </form>
             <CustomButton onClick={register}>
                     SIGN UP

@@ -41,7 +41,7 @@ const filter =  items.filter(item =>
 
             (filter.map(item => (
                 <Card  id = {item.product_id} name={item.product_name} imageUrl={item.product_img} price={item.product_price} />
-            ))) : <h1 style={{marginLeft:"100%",width: "100%"}}> Sorry..... Not Found </h1>
+            ))) : <h1 style={{marginLeft:"100%",width: "100%"}}> Loading... </h1>
         }
           </div> 
 
