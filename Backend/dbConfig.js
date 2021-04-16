@@ -1,5 +1,5 @@
 
-
+require("dotenv").config();
 // Libraries
 const mysql = require("mysql");
 
