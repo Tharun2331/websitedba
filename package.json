@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "engines": {
     "node": "12.18.2"
-    },
+  },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -16,6 +16,7 @@
     "bootstrap": "^4.5.3",
     "cors": "^2.8.5",
     "date-and-time": "^0.14.2",
+    "dotenv": "^8.2.0",
     "emailjs-com": "^2.6.4",
     "express": "^4.17.1",
     "firebase": "^8.1.2",
